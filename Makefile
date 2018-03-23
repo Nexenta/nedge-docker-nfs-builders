@@ -21,7 +21,7 @@ lint:
 		fi; \
 	done
 
-install:
+install: build
 	mkdir -p $(NEDGE_DEST)
 	mkdir -p $(NEDGE_ETC)
 	cp -n $(GOPATH)/src/github.com/Nexenta/nedge-docker-nfs/ndnfs/daemon/ndnfs.json $(NEDGE_ETC)/ndnfs.json.example
