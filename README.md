@@ -5,7 +5,7 @@ NexentaEdge for Docker Volumes
   devices in a Docker environment over NFS protocol.
 
 ## Configuration
-Clone this repository and cd to ndnfsv2_builder.
+Clone this repository and cd to repository folder.
 Create a /etc/ndnfs folder and put your ndnfs.json config file there.
 Example of a config file can be found in the ndnfs/driver folder.
   ```
@@ -15,7 +15,7 @@ Example of a config file can be found in the ndnfs/driver folder.
   ```
 
 ## Driver Installation
-After the above Prerequisites are met, use the Makefile from ndnfsv2_builder folder:
+After the above Prerequisites are met, use the Makefile from builder folder:
   ```
   cd $GOPATH/src/github.com/nexenta/nedge-docker-nfs-builders
   make
