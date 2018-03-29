@@ -1,18 +1,22 @@
-NDNFS_LOG_PATH = /opt/nedge/var/log
-NDNFS_PID_PATH = /opt/nedge/var/run
+NDNFS_LOG_PATH = $(DESTDIR)/opt/nedge/var/log
+NDNFS_PID_PATH = $(DESTDIR)/opt/nedge/var/run
 NEDGE_DEST = $(DESTDIR)/opt/nedge/sbin
 NEDGE_ETC = $(DESTDIR)/opt/nedge/etc/ccow
 NDNFS_EXE = ndnfs
 
+ifeq ($(GOPATH),)
+GOPATH = $(shell pwd)
+endif
+
 build:
-	go get -d -v github.com/opencontainers/runc
+	GOPATH=$(GOPATH) go get -d -v github.com/opencontainers/runc
 	cd $(GOPATH)/src/github.com/opencontainers/runc; git checkout aada2af
-	go get -v github.com/docker/go-plugins-helpers/volume
+	GOPATH=$(GOPATH) go get -v github.com/docker/go-plugins-helpers/volume
 	cd $(GOPATH)/src/github.com/docker/go-plugins-helpers/volume; git checkout d7fc7d0
 	cd $(GOPATH)/src/github.com/docker/go-connections; git checkout acbe915
-	go get -d github.com/Nexenta/nedge-docker-nfs/...
+	GOPATH=$(GOPATH) go get -d github.com/Nexenta/nedge-docker-nfs/...
 	cd $(GOPATH)/src/github.com/Nexenta/nedge-docker-nfs; git checkout stable/v13
-	go get github.com/Nexenta/nedge-docker-nfs/...
+	GOPATH=$(GOPATH) go get github.com/Nexenta/nedge-docker-nfs/...
 
 lint:
 	go get -v github.com/golang/lint/golint
@@ -23,7 +27,7 @@ lint:
 		fi; \
 	done
 
-install: build
+install:
 	mkdir -p $(NEDGE_DEST)
 	mkdir -p $(NEDGE_ETC)
 	mkdir -p $(NDNFS_LOG_PATH)
