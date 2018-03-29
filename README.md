@@ -50,7 +50,7 @@ You can find instructions and steps on the Docker website here:
 ## Driver Installation
 After the above Prerequisites are met, use the Makefile:
   ```
-  git clone git clone -b stable/v13 --single-branch https://github.com/Nexenta/nedge-docker-nfs-builders.git
+  git clone -b stable/v13 --single-branch https://github.com/Nexenta/nedge-docker-nfs-builders.git
   cd nedge-docker-nfs-builders
   make install
   ```

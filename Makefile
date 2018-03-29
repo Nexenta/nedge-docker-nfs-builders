@@ -1,3 +1,5 @@
+NDNFS_LOG_PATH = /opt/nedge/var/log
+NDNFS_PID_PATH = /opt/nedge/var/run
 NEDGE_DEST = $(DESTDIR)/opt/nedge/sbin
 NEDGE_ETC = $(DESTDIR)/opt/nedge/etc/ccow
 NDNFS_EXE = ndnfs
@@ -24,12 +26,18 @@ lint:
 install: build
 	mkdir -p $(NEDGE_DEST)
 	mkdir -p $(NEDGE_ETC)
-	cp -n $(GOPATH)/src/github.com/Nexenta/nedge-docker-nfs/ndnfs/daemon/ndnfs.json $(NEDGE_ETC)/ndnfs.json.example
+	mkdir -p $(NDNFS_LOG_PATH)
+	mkdir -p $(NDNFS_PID_PATH)
+	touch $(NDNFS_LOG_PATH)/ndnfs.log
+	touch $(NDNFS_PID_PATH)/ndnfs.pid
+	cp -n $(GOPATH)/src/github.com/Nexenta/nedge-docker-nfs/ndnfs/daemon/ndnfs.json $(NEDGE_ETC)/ndnfs.json
 	cp -f $(GOPATH)/bin/$(NDNFS_EXE) $(NEDGE_DEST)/$(NDNFS_EXE)
 
 uninstall:
 	rm -f $(NEDGE_ETC)/ndnfs.json
 	rm -f $(NEDGE_DEST)/$(NDNFS_EXE)
+	rm -f $(NDNFS_LOG_PATH)/ndnfs.log
+	rm -f $(NDNFS_PID_PATH)/ndnfs.pid
 
 clean:
 	go clean github.com/Nexenta/nedge-docker-nfs
