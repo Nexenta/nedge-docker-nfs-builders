@@ -48,5 +48,5 @@ enable:
 
 push:  clean docker rootfs create enable
 	@echo "### push plugin ${PLUGIN_NAME}:${PLUGIN_TAG}"
-	@docker login --username=antonskriptsov --password=\'NDNFS_DOKER_PASS\'
+	@docker login --username=antonskriptsov --password=\'$NDNFS_DOKER_PASS\'
 	@docker plugin push ${PLUGIN_NAME}:${PLUGIN_TAG}
