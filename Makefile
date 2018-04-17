@@ -44,7 +44,7 @@ create:
 
 enable:
 	@echo "### enable plugin ${PLUGIN_NAME}:${PLUGIN_TAG}"
-	@docker plugin enable ${PLUGIN_NAME}:${PLUGIN_TAG}
+	@#docker plugin enable ${PLUGIN_NAME}:${PLUGIN_TAG}
 
 push:  clean docker rootfs create enable
 	@echo "### push plugin ${PLUGIN_NAME}:${PLUGIN_TAG}"
