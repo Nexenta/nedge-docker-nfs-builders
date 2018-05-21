@@ -1,5 +1,5 @@
 PLUGIN_NAME=nexenta/nexentaedge-nfs-plugin
-PLUGIN_TAG=latest
+PLUGIN_TAG=dev
 
 
 all: clean docker rootfs create enable clean
