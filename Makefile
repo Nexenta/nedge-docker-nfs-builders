@@ -1,5 +1,6 @@
-PLUGIN_NAME=nexenta/nexentaedge-nfs-plugin
-PLUGIN_TAG=dev
+PLUGIN_NAME=10.3.199.92:5000/nexentaedge-nfs-plugin
+$(eval PLUGIN_TAG=$(shell git log --format="%H" -n 1))
+#PLUGIN_TAG=$(git log --format="%H" -n 1)
 
 
 all: clean docker rootfs create enable clean
