@@ -9,11 +9,16 @@ GOPATH = $(shell pwd)
 endif
 
 build:
+	# docker/go-plugins-helpers
+	GOPATH=$(GOPATH) go get -d -v github.com/docker/go-plugins-helpers/volume
+	cd $(GOPATH)/src/github.com/docker/go-plugins-helpers; git checkout d7fc7d0
+	# opencontainers/runc
 	GOPATH=$(GOPATH) go get -d -v github.com/opencontainers/runc
 	cd $(GOPATH)/src/github.com/opencontainers/runc; git checkout aada2af
-	GOPATH=$(GOPATH) go get -v github.com/docker/go-plugins-helpers/volume
-	cd $(GOPATH)/src/github.com/docker/go-plugins-helpers/volume; git checkout d7fc7d0
+	# docker/go-connections
+	GOPATH=$(GOPATH) go get -d -v github.com/docker/go-connections
 	cd $(GOPATH)/src/github.com/docker/go-connections; git checkout acbe915
+	# NDNFS
 	GOPATH=$(GOPATH) go get -d github.com/Nexenta/nedge-docker-nfs/...
 	cd $(GOPATH)/src/github.com/Nexenta/nedge-docker-nfs; git checkout stable/v13
 	GOPATH=$(GOPATH) go get github.com/Nexenta/nedge-docker-nfs/...
